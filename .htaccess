@@ -1,0 +1,21 @@
+Options +FollowSymLinks
+RewriteEngine On
+ 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+#Usuarios
+RewriteRule ^adicionar-usuario\/?$   ./usuario.php?mode=add
+RewriteRule ^usuarios\/?$            ./usuario.php?mode=list
+RewriteRule ^usuario\/(\d+)*\/?$     ./usuario.php?mode=edit&id=$1
+
+#Clientes
+RewriteRule ^adicionar-cliente\/?$   ./client.php?mode=add
+RewriteRule ^clientes\/?$            ./client.php?mode=list
+RewriteRule ^cliente\/(\d+)*\/?$     ./client.php?mode=edit&id=$1
+
+#Tipos de Equipamento
+RewriteRule ^adicionar-tipo-equipamento\/?$   ./equip_type.php?mode=add
+RewriteRule ^tipos-equipamento\/?$            ./equip_type.php?mode=list
+RewriteRule ^tipo-equipamento\/(\d+)*\/?$     ./equip_type.php?mode=edit&id=$1

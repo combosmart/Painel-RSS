@@ -1,0 +1,15 @@
+﻿!ScalaScript1103
+// Saved by Scala Designer Release 11.03.04 at 2018-02-01 11:20:36
+:"Monitoramento-Elemidia.sca"
+{
+  Group:
+    BackgroundSettings(Size(1920, 1080));
+    Config.RecentPublishLocations(PublishLocation("combotv.jbtec.com.br cm", "Monitoramento-Elemidia"));
+  Sequence:
+    {
+      Group:
+        Display(Backdrop(Pen(2)), Margin(10, 10, 0, 0), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa, $777777, $bbbbbb, $dddddd, $465a96)));
+        WebClip(15, 5, "http://www.combovideos.com.br/elemidia/", Transparent(Off), OnReplay(Replace), Operation(On), RenderSize(1920, 1080));
+        HardDuration(17000);
+    }
+}
