@@ -99,7 +99,7 @@
 								$sql = "INSERT INTO rss_curitibalocal 
 								        (title, link, data_item, arquivo_imagem, uid, data_import) 
 								        VALUES (:title, :link, :data_item, :arquivo_imagem, :uid, NOW())";
-								$stmt = $db->prepare($sql);
+								$stmt = $this->_db->prepare($sql);
 								$result = $result && $stmt->execute(array(
 													 ':title'          => strval($item->title), 
 													 ':link'           => strval($item->enclosure["url"]), 						
