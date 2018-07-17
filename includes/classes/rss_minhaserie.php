@@ -77,7 +77,7 @@
 		
 		public function saveXML() {
 			try {
-					$feed = "http://rss.minhaserie.com.br/feed";
+					$feed = "https://www.minhaserie.com.br/rss/";
 					$xml = simplexml_load_file($feed);
 					$lastBuildDate = date_format(date_create(strval($xml->channel->lastBuildDate)),"Y-m-d");
 					$result = true;
