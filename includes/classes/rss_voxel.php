@@ -107,14 +107,18 @@
 					//controle para não gravar o mesmo feed de um dia duas vezes
 					if ($checkBuildDate == 0) {
 						foreach($xml->xpath("//item") as $item) {
-							$sql = "INSERT INTO rss_voxel (title, link, data_item, arquivo_imagem) VALUES (:title, :link, :data_item, :arquivo_imagem)";
+							$uid = strtotime(strval($item->pubDate));
+							$sql = "INSERT INTO rss_voxel 
+							        (title, link, data_item, arquivo_imagem, uid, data_import) 
+							        VALUES (:title, :link, :data_item, :arquivo_imagem, :uid, NOW())";
 							$stmt = $this->_db->prepare($sql);
 							$result = $result && $stmt->execute(array(
-										':title'    => strval($item->title), 
-										':link'     => strval($item->enclosure["url"]), 							
-										':data_item' => strval($lastBuildDate),
-										':arquivo_imagem' => hash('md5',strval($item->title))
-									  ));
+								 ':title'          => strval($item->title), 
+								 ':link'           => strval($item->enclosure["url"]), 						
+								 ':data_item'      => strval($lastBuildDate),
+								 ':arquivo_imagem' => hash('md5',strval($item->title)),
+								 ':uid'            => $uid
+						     ));
 						}
 					}
 					

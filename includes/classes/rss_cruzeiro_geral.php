@@ -82,6 +82,7 @@
 					$lastBuildDate = date_format(date_create(strval($xml->channel->pubDate)),"Y-m-d");
 					$result = true;
 					$rss = new RSS_JCruzGer($db);
+
 					
 					$sql = "SELECT id from rss_cruzeiro_geral WHERE data_item = :data_item";			    
 					$stmt = $this->_db->prepare($sql);
@@ -110,14 +111,18 @@
 					if ($checkBuildDate == 0) {
 						if ($xml) {
 							foreach($xml->xpath("//item") as $item) {
-								$sql = "INSERT INTO rss_cruzeiro_geral (title, link, data_item, arquivo_imagem) VALUES (:title, :link, :data_item, :arquivo_imagem)";
+								$uid = strtotime(strval($item->pubDate));
+								$sql = "INSERT INTO rss_cruzeiro_geral 
+								        (title, link, data_item, arquivo_imagem, uid, data_import) 
+								        VALUES (:title, :link, :data_item, :arquivo_imagem, :uid, NOW())";
 								$stmt = $this->_db->prepare($sql);
 								$result = $result && $stmt->execute(array(
-											':title'    => strval($item->title), 
-											':link'     => strval($item->enclosure["url"]), 			
-											':data_item' => strval($lastBuildDate),
-											':arquivo_imagem' => hash('md5',strval($item->title))
-										  ));
+								 ':title'          => strval($item->title), 
+								 ':link'           => strval($item->enclosure["url"]), 						
+								 ':data_item'      => strval($lastBuildDate),
+								 ':arquivo_imagem' => hash('md5',strval($item->title)),
+								 ':uid'            => $uid
+						     ));	
 							}
 						}
 					}
