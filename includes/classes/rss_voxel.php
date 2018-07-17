@@ -128,7 +128,7 @@
 	    public function listar() {
 	    	try {
 		        $sql  = "SELECT id, title, link, destaque, data_item, exibir ";
-				$sql .= "FROM rss_voxel ORDER BY id";
+				$sql .= "FROM rss_voxel ORDER BY id DESC";
 				$stmt = $this->_db->prepare($sql);
 				$stmt->execute();
 	            $result = $stmt->fetchAll();

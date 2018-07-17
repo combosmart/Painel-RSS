@@ -133,7 +133,7 @@
 						</form>			
 						<!-- /MODAL LIMPAR FEED -->
 						<div class="panel-body">
-							<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
+							<table class="table table-bordered table-striped mb-none" id="datatable-default" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
 								<thead>
 									<tr>
 										<th>Destaque</th>
