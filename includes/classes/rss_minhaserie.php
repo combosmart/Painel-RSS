@@ -119,7 +119,7 @@
 								$stmt = $this->_db->prepare($sql);
 								$result = $result && $stmt->execute(array(
 								 ':title'          => strval($item->title), 
-								 ':link'           => strval($item->enclosure["url"]), 						
+								 ':link'           => strval($item->image), 						
 								 ':data_item'      => strval($lastBuildDate),
 								 ':arquivo_imagem' => hash('md5',strval($item->title)),
 								 ':uid'            => $uid
