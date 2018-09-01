@@ -77,7 +77,7 @@
 		
 		public function saveXML() {
 			try {
-					$feed = "https://www.jornalcruzeiro.com.br/rss/0/1";
+					$feed = "https://www.jornalcruzeiro.com.br/feed";
 					$xml = simplexml_load_file($feed);
 					$lastBuildDate = date_format(date_create(strval($xml->channel->pubDate)),"Y-m-d");
 					$result = true;
@@ -92,6 +92,7 @@
 					
 					$checkBuildDate = $stmt->rowCount();
 					
+					
 					/*
 					print_r($xml->xpath("//item")); exit;					
 					foreach($xml->xpath("//item") as $item) {
@@ -101,7 +102,9 @@
 						echo "<br>";
 						echo $lastBuildDate;
 						echo "<br>";
-						echo strval($item->img);
+						//echo strval($item->children("content", true));
+						preg_match('~<img.*?src=["\']+(.*?)["\']+~', strval($item->children("content", true)), $match);
+						$url = $match[1];
 						echo "<br>";
 					}
 					exit;
@@ -111,6 +114,17 @@
 					if ($checkBuildDate == 0) {
 						if ($xml) {
 							foreach($xml->xpath("//item") as $item) {
+
+								// pega a url da imagem dentro do cdata
+								// ele busca pela <img> e busca o que está dentro do 
+								// atributo src e coloca numa variável chamada $url
+								// essa variável é um array. na segunda posição dela
+								// está a informação que eu preciso ($url[1]).
+
+								preg_match('~<img.*?src=["\']+(.*?)["\']+~', strval($item->children("content", true)), $url);
+
+								// fim da alteração	
+
 								$uid = strtotime(strval($item->pubDate));
 								$sql = "INSERT INTO rss_cruzeiro_geral 
 								        (title, link, data_item, arquivo_imagem, uid, data_import) 
@@ -118,7 +132,7 @@
 								$stmt = $this->_db->prepare($sql);
 								$result = $result && $stmt->execute(array(
 								 ':title'          => strval($item->title), 
-								 ':link'           => strval($item->enclosure["url"]), 						
+								 ':link'           => $url[1], 					
 								 ':data_item'      => strval($lastBuildDate),
 								 ':arquivo_imagem' => hash('md5',strval($item->title)),
 								 ':uid'            => $uid

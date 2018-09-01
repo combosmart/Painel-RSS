@@ -155,14 +155,16 @@
 				                                    Curitiba Cult (Local)
 				                                </a>
 				                            </li>
-											    <li>
+											<!--
+											<li>
 				                                <a href="rss_cruzeiro_sorocaba.php?mode=list">
 				                                    Cruzeiro do Sul - Sorocaba
 				                                </a>
 				                            </li>
+				                             -->
 											<li>
 				                                <a href="rss_cruzeiro_geral.php?mode=list">
-				                                    Cruzeiro do Sul - Geral
+				                                    Cruzeiro do Sul
 				                                </a>
 				                            </li>
 											<li>
