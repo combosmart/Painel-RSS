@@ -115,7 +115,10 @@
 						if ($xml) {
 							foreach($xml->xpath("//item") as $item) {
 
-								// pega a url da imagem dentro do cdata
+								// problema: cruzeiro passou a colocar a imagem dentro da
+								// tag <content> como CDATA, ou seja, texto puro sem indexação
+								// para entender acesse a url do feed declarada em $feed
+								// então peguei a url da imagem dentro do cdata
 								// ele busca pela <img> e busca o que está dentro do 
 								// atributo src e coloca numa variável chamada $url
 								// essa variável é um array. na segunda posição dela
