@@ -92,19 +92,18 @@
 					
 					$checkBuildDate = $stmt->rowCount();
 					
-					
 					/*
-					print_r($xml->xpath("//item")); exit;					
 					foreach($xml->xpath("//item") as $item) {
-						echo strval($item->title);  
+						echo "title: " . strval($item->title);  
 						echo "<br>";
-						echo strval($item->link);
+						echo "link: " . strval($item->link);
 						echo "<br>";
-						echo $lastBuildDate;
+						echo "lastBuildDate: " . $lastBuildDate;
 						echo "<br>";
 						//echo strval($item->children("content", true));
 						preg_match('~<img.*?src=["\']+(.*?)["\']+~', strval($item->children("content", true)), $match);
 						$url = $match[1];
+						echo "url: " . $url;
 						echo "<br>";
 					}
 					exit;

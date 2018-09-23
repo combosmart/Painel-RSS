@@ -42,7 +42,7 @@
 
 			if (!$check) { $error[] = 'Arquivo não é uma imagem.'; }
 			if (file_exists($target_file)) { $error[] = 'Já existe um arquivo no servidor com este nome.'; }
-			if ($_FILES["post_img"]["size"] > 500000) { $error[] = 'Arquivo grande demais.'; }
+			//if ($_FILES["post_img"]["size"] > 500000) { $error[] = 'Arquivo grande demais.'; }
 
 			if(!isset($error)) {
 				if (move_uploaded_file($_FILES["post_img"]["tmp_name"], $target_file)) {
